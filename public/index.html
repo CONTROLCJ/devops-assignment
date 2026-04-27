@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Production-Ready DevOps Dashboard - Container monitoring and pipeline status">
+    <title>DevOps Dashboard — Yunus Aykut</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <div>
+                    <h1>DevOps Dashboard</h1>
+                    <p class="subtitle">Production Infrastructure Monitor</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <span class="badge badge-live"><span class="pulse"></span> Canlı</span>
+                <span class="author">Yapımcı: Yunus Aykut</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Status Cards -->
+        <section class="status-grid">
+            <div class="card card-status" id="card-api">
+                <div class="card-header">
+                    <div class="status-dot" id="api-dot"></div>
+                    <h3>Node.js API</h3>
+                </div>
+                <div class="card-body">
+                    <div class="metric-big" id="api-status">Kontrol ediliyor...</div>
+                    <div class="metric-details">
+                        <div class="detail"><span class="label">Port</span><span class="value">3000</span></div>
+                        <div class="detail"><span class="label">İmaj</span><span class="value">distroless/nonroot</span></div>
+                        <div class="detail"><span class="label">CPU</span><span class="value">0.5 core</span></div>
+                        <div class="detail"><span class="label">RAM</span><span class="value">512 MB</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="timestamp" id="api-time">—</span>
+                </div>
+            </div>
+
+            <div class="card card-status" id="card-db">
+                <div class="card-header">
+                    <div class="status-dot status-healthy"></div>
+                    <h3>PostgreSQL</h3>
+                </div>
+                <div class="card-body">
+                    <div class="metric-big healthy-text">Sağlıklı</div>
+                    <div class="metric-details">
+                        <div class="detail"><span class="label">Versiyon</span><span class="value">15-alpine</span></div>
+                        <div class="detail"><span class="label">Port</span><span class="value">5432 (internal)</span></div>
+                        <div class="detail"><span class="label">CPU</span><span class="value">0.5 core</span></div>
+                        <div class="detail"><span class="label">RAM</span><span class="value">512 MB</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="timestamp">Healthcheck: pg_isready</span>
+                </div>
+            </div>
+
+            <div class="card card-status" id="card-network">
+                <div class="card-header">
+                    <div class="status-dot status-healthy"></div>
+                    <h3>Network</h3>
+                </div>
+                <div class="card-body">
+                    <div class="metric-big healthy-text">İzole</div>
+                    <div class="metric-details">
+                        <div class="detail"><span class="label">Adı</span><span class="value">backend</span></div>
+                        <div class="detail"><span class="label">Tip</span><span class="value">internal: true</span></div>
+                        <div class="detail"><span class="label">DB Erişim</span><span class="value">Sadece internal</span></div>
+                        <div class="detail"><span class="label">Dış Port</span><span class="value">Kapalı 🔒</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="timestamp">Veritabanı dışarıya kapalı</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Güvenlik Katmanları
+            </h2>
+            <div class="security-grid">
+                <div class="security-item">
+                    <div class="security-icon si-green">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div>
+                        <h4>Distroless Image</h4>
+                        <p>Shell yok, minimal saldırı yüzeyi</p>
+                    </div>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon si-blue">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    </div>
+                    <div>
+                        <h4>USER nonroot</h4>
+                        <p>Container root olarak çalışmaz</p>
+                    </div>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon si-purple">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                    </div>
+                    <div>
+                        <h4>File-Based Secrets</h4>
+                        <p>Şifreler env yerine /run/secrets/ altında</p>
+                    </div>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon si-orange">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Internal Network</h4>
+                        <p>DB izole, dış erişim yok</p>
+                    </div>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon si-cyan">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                    </div>
+                    <div>
+                        <h4>OIDC Federation</h4>
+                        <p>Long-lived credential kullanılmaz</p>
+                    </div>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon si-red">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <div>
+                        <h4>Trivy + Cosign</h4>
+                        <p>Zafiyet tarama + imaj imzalama</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pipeline Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                CI/CD Pipeline
+            </h2>
+            <div class="pipeline">
+                <div class="pipeline-step done">
+                    <div class="step-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                    </div>
+                    <span>Push to Main</span>
+                </div>
+                <div class="pipeline-connector done-conn"></div>
+                <div class="pipeline-step done">
+                    <div class="step-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                    </div>
+                    <span>OIDC Auth</span>
+                </div>
+                <div class="pipeline-connector done-conn"></div>
+                <div class="pipeline-step done">
+                    <div class="step-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                    </div>
+                    <span>Build Image</span>
+                </div>
+                <div class="pipeline-connector done-conn"></div>
+                <div class="pipeline-step done">
+                    <div class="step-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <span>Trivy Scan</span>
+                </div>
+                <div class="pipeline-connector done-conn"></div>
+                <div class="pipeline-step done">
+                    <div class="step-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    </div>
+                    <span>Push & Sign</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dockerfile Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                Multi-Stage Build
+            </h2>
+            <div class="stages-grid">
+                <div class="stage-card">
+                    <div class="stage-number">1</div>
+                    <h4>deps</h4>
+                    <p>node:22-bullseye-slim</p>
+                    <code>--mount=type=cache<br>--mount=type=secret</code>
+                </div>
+                <div class="stage-arrow">→</div>
+                <div class="stage-card">
+                    <div class="stage-number">2</div>
+                    <h4>builder</h4>
+                    <p>node:22-bullseye-slim</p>
+                    <code>COPY node_modules<br>COPY source code</code>
+                </div>
+                <div class="stage-arrow">→</div>
+                <div class="stage-card stage-final">
+                    <div class="stage-number">3</div>
+                    <h4>runner</h4>
+                    <p>distroless/nodejs22</p>
+                    <code>USER nonroot<br>CMD ["index.js"]</code>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Yunus Aykut — Production-Ready DevOps Assignment</p>
+    </footer>
+
+    <script src="/app.js"></script>
+</body>
+</html>

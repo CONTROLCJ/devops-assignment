@@ -1,0 +1,10 @@
+# Açıklama: Bu .npmrc dosyası, private npm registry kullanıyorsanız
+# Dockerfile'daki --mount=type=secret ile mount edilir.
+# Gerçek token'ınızı buraya ekleyin.
+# Bu dosya build sırasında imaja YAZILMAZ (BuildKit secret mount).
+#
+# Örnek kullanım:
+# //registry.npmjs.org/:_authToken=npm_XXXXXXXXXXXX
+#
+# Build komutu:
+# DOCKER_BUILDKIT=1 docker build --secret id=npmrc,src=.npmrc .

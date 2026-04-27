@@ -1,0 +1,14 @@
+{
+  "name": "devops-assignment",
+  "version": "1.0.0",
+  "description": "Production-Ready Node.js application with DevOps best practices",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
