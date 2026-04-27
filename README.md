@@ -1,6 +1,7 @@
 # Production-Ready DevOps Assignment
 
-> **Yapımcı:** Yunus Aykut
+> **Yapımcı:** Yunus Aykut  
+> **Öğrenci No:** 24080410012
 
 Node.js + PostgreSQL uygulaması için production-grade DevOps altyapısı.
 
